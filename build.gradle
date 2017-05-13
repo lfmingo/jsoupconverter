@@ -1,0 +1,22 @@
+group 'demo'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = "Principal"
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+
+    compile 'org.jsoup:jsoup:1.10.2'
+    //compile 'com.github.fcannizzaro:jsoup-annotations:1.0.2'
+}
