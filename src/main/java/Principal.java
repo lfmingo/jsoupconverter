@@ -1,3 +1,4 @@
+import io.reactivex.Observable;
 import rest.EtsisiRest;
 import rest.model.NPM;
 import rest.EtsisiService;
@@ -18,17 +19,9 @@ public class Principal {
 
         EtsisiService service = EtsisiRest.getInstance();
 
-        Call<NPM> salida = service.listado();
-        NPM npm = salida.execute().body();
-        for(Noticia n:npm.noticias)
-            System.out.println(n.name);
+        Observable<NPM> salida = service.listado();
+        salida.flatMapIterable(x -> x.noticias)
+                .subscribe( x -> System.out.println(x.name));
 
-
-        /*Call<List<Noticia>> salida = service.listado();
-
-        List<Noticia> npm = salida.execute().body();
-        for(Noticia n:npm)
-            System.out.println(n.name);
-        */
     }
 }

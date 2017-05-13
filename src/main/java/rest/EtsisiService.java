@@ -1,5 +1,6 @@
 package rest;
 
+import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import rest.model.NPM;
@@ -15,6 +16,5 @@ import java.util.List;
 public interface EtsisiService {
 
     @GET("/")
-    Call<NPM> listado();
-    //Call<List<Noticia>> listado();
+    Observable<NPM> listado();
 }
