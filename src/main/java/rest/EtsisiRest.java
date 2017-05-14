@@ -11,7 +11,7 @@ public class EtsisiRest {
 
 
     private static Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://www.etsisi.upm.es")
+            .baseUrl("http://www.marca.com")
             .addConverterFactory(new JsoupConverterFactory())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build();
