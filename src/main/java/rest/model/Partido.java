@@ -19,7 +19,6 @@ public class Partido {
     @Text("span.score.playing > span:eq(1)")
     public String goals_visit;
 
-    @Child
     @Items
     public List<Goleador> goleadores;
 
