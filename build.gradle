@@ -23,4 +23,6 @@ dependencies {
 
     compile 'com.squareup.retrofit2:adapter-rxjava2:+'
 
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+
 }
