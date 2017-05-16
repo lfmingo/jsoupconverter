@@ -22,6 +22,6 @@ public class Partido {
     @Items
     public List<Goleador> goleadores;
 
-    @Text("h3.generico > a")
+    @Text("h3.generico")
     public String status;
 }

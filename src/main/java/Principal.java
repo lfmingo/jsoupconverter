@@ -23,6 +23,9 @@ public class Principal {
                     System.out.println(x.local + " " + x.goals_local + " : " + x.goals_visit + " " + x.visit + " --> " + x.status);
                     for(Goleador goleador:x.goleadores)
                         System.out.println(goleador.name);
+                }, y -> {
+                    System.out.println(y.getMessage());
+                    y.printStackTrace();
                 });
 
     }
