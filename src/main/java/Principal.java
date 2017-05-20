@@ -2,7 +2,7 @@ import io.reactivex.Observable;
 import rest.EtsisiRest;
 import rest.model.Goleador;
 import rest.model.NPM;
-import rest.EtsisiService;
+import rest.interfaces.EtsisiService;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ public class Principal {
 
         EtsisiService service = EtsisiRest.getInstance();
 
-        Observable<NPM> salida = service.listado();
+        Observable<NPM> salida = service.listado(38);
         salida.flatMapIterable(x -> x.partidos)
                 .subscribe( x -> {
                     System.out.println(x.local + " " + x.goals_local + " : " + x.goals_visit + " " + x.visit + " --> " + x.status);

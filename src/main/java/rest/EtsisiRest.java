@@ -1,12 +1,13 @@
 package rest;
 
-import io.reactivex.plugins.RxJavaPlugins;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
-import rest.model.OfflineCacheInterceptor;
-import rest.model.OnlineCacheInterceptor;
+import rest.cache.OfflineCacheInterceptor;
+import rest.cache.OnlineCacheInterceptor;
+import rest.converter.JsoupConverterFactory;
+import rest.interfaces.EtsisiService;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
@@ -20,11 +21,10 @@ import java.util.logging.Logger;
 public class EtsisiRest {
 
 
-    private final static int CACHE_SIZE_BYTES = 1024*1024*10;
 
     private static OkHttpClient client = new OkHttpClient()
             .newBuilder()
-            .cache(new Cache(new File("."),CACHE_SIZE_BYTES))
+            .cache(new Cache(new File("."), Utils.CACHE_SIZE_BYTES))
             .addNetworkInterceptor(new OnlineCacheInterceptor())
             .addInterceptor(new OfflineCacheInterceptor( true)) // TODO: check inet
             .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE))
@@ -40,7 +40,7 @@ public class EtsisiRest {
             .build();
 
     private static Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://www.marca.com")
+            .baseUrl(Utils.BASE_URL)
             .addConverterFactory(new JsoupConverterFactory())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(client)
@@ -48,7 +48,7 @@ public class EtsisiRest {
 
     private static EtsisiService service;
 
-    public static EtsisiService getInstance() {
+    public static EtsisiService getInstance() { // TODO: is_online
         if (service == null)
             service = retrofit.create(EtsisiService.class);
         return service;

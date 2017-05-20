@@ -1,10 +1,9 @@
-package rest;
+package rest.converter;
 
 import jsoupannotations.main.JsoupProcessor;
 import okhttp3.ResponseBody;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
-import rest.model.NPM;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
 
